@@ -5,7 +5,7 @@ image: "/images/projects/cyr-wheel/final.jpg"
 imageAlt: "Cyr Wheel"
 category: "Mechanical"
 tags: ["Fabrication", "Physical design", "Cyr wheel"]
-order: 16
+order: 5
 role: "Design & creation"
 gallery:
   - src: "/images/projects/cyr-wheel/fabrication.jpg"

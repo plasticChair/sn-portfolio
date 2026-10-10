@@ -6,7 +6,7 @@ summary: "An analog battery-disconnect circuit with voltage and thermal shutdown
 category: "Power"
 status: "Design documented"
 tags: ["LiPo", "Comparators", "Thermal cutoff"]
-order: 3
+order: 4
 role: "Analog circuit design, PCB layout & enclosure integration"
 tools: ["KiCad", "3D enclosure models"]
 ---

@@ -14,6 +14,7 @@ const projects = defineCollection({
     image: z.string().regex(/^\/images\/.+\.(webp|png|jpe?g|avif|svg)$/i, 'Use a local /images/ asset').optional(),
     imageAlt: z.string().min(1).optional(),
     imagePosition: z.string().default('center'),
+    tileImagePosition: z.string().optional(),
     gallery: z.array(z.object({
       src: z.string().regex(/^\/images\/.+\.(webp|png|jpe?g|avif|svg)$/i, 'Use a local /images/ asset'),
       alt: z.string().min(1),

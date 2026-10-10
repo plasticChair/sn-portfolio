@@ -4,9 +4,9 @@ export const portfolio = {
   title: 'Electronics & embedded design & more',
   description: 'Custom electronics, embedded systems, and practical hardware projects.',
   tagline: { first: 'Thoughtful engineering.', second: 'From idea to', accent: 'real life.' },
-  introduction: 'Custom electronics for things I use. Wearables, power circuits, wireless controls, and hardware.',
+  introduction: 'Wearables, gadgets, wireless controls, and more.',
   hero: {
-    focus: 'Circuits. Firmware. Real-world hardware.',
+    focus: 'Custom Designs for Custom Problems. ',
     image: '/images/electronics.jpg',
   },
   availability: 'Always building something',

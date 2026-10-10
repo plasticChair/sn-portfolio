@@ -64,6 +64,14 @@ test('every published Markdown project has a card and a generated page; drafts a
   assert.equal(homepage('[data-project]').length, published);
 });
 
+test('Auto Relay Driver is removed from the catalog, routes, and sitemap', async () => {
+  const homepage = load(await readFile(path.join(dist, 'index.html'), 'utf8'));
+  assert.equal(homepage('a[href="/projects/auto-relay-driver/"]').length, 0);
+  await assert.rejects(access(path.join(dist, 'projects/auto-relay-driver/index.html')));
+  const sitemap = await readFile(path.join(dist, 'sitemap-0.xml'), 'utf8');
+  assert.equal(sitemap.includes('/projects/auto-relay-driver/'), false);
+});
+
 test('generated pages have one main heading, descriptions, and local images with alt text', async () => {
   for (const file of pages) {
     const page = load(await readFile(file, 'utf8'));

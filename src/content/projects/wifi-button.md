@@ -6,7 +6,7 @@ summary: "A battery-powered ESP32 button with charging, a power-control interfac
 category: "Wireless"
 status: "Design documented"
 tags: ["ESP32", "Battery power", "Button interface"]
-order: 14
+order: 11
 role: "Circuit design, PCB layout & enclosure integration"
 tools: ["KiCad", "Mechanical CAD exports", "PCB assembly files"]
 ---

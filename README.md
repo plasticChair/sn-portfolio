@@ -2,7 +2,7 @@
 
 A modern, static engineering portfolio built with Astro, TypeScript, and Markdown. Project cards, category filters, case-study pages, and navigation are generated from your content. Local fonts and images keep the deployed site self-contained. No server, database, paid service, or Cloudflare adapter is required.
 
-The portfolio uses a full-width photographic opener, a compact charcoal theme, and a category-filtered catalog with main photos as tile backgrounds. The opener's circuit-board photo is illustrative; project images include supplied JPGs and remaining labeled PNG placeholders. There are 16 entries: 14 design-based case studies from `E:\Designs`, the PCB Business Cards from `E:\Deadbug\BusinessCards\BusinessCards`, and a Cyr Wheel build/media draft. Source files were inspected read-only; they are not copied into this repository or automatically synchronized.
+The portfolio uses a full-width photographic opener, a compact charcoal theme, and a category-filtered catalog with main photos as tile backgrounds. The opener's circuit-board photo is illustrative; project images include supplied JPGs and remaining labeled PNG placeholders. There are 16 entries: 13 design-based case studies from `E:\Designs`, the PCB Business Cards from `E:\Deadbug\BusinessCards\BusinessCards`, a Cyr Wheel build/media draft, and SMS-Questions from `E:\Projects\SMS-Questions` with an owner-confirmed Android/Wi-Fi/Proxmox deployment. SMS-Questions uses an original local architecture illustration rather than a photo of the deployed hardware; its asset source and offline generator are documented in `docs/assets.md`. Source files were inspected read-only; they are not copied into this repository or automatically synchronized.
 
 **The portfolio name is Scott Nette; contact details still need configuring.** Review the case-study drafts against your actual build history before publishing. Unknown dates, completion claims, and measured outcomes are intentionally omitted. `Design documented` means source design files exist, not that hardware passed testing. The source map and open questions are in `docs/project-sources.md`.
 
@@ -62,6 +62,7 @@ No manual HTML or navigation edits are needed. A new category automatically beco
 | `tags` | Technologies used in search and shown on the case study, not piled onto catalog cards |
 | `image`, `imageAlt` | Optional local cover photo; alt text is required when an image is supplied |
 | `imagePosition` | Optional CSS position, e.g. `35% center` |
+| `tileImagePosition` | Optional catalog-only image position; overrides `imagePosition` on the tile without moving the case-study cover |
 | `gallery` | Optional additional `{ src, alt, caption }` photos, shown in a responsive gallery |
 | `video`, `videoPoster`, `videoCaption` | Optional local MP4/WebM, cover image, and caption; a poster without `video` creates a non-playing placeholder |
 | `featured` | Optional ordering priority; all cards keep the same width |
@@ -96,9 +97,9 @@ Every project has its own directory under `public/images/projects/`, named after
 
 JPG/JPEG, PNG, WebP, and AVIF are supported. Keep photos in their actual format and match the extension in the project's frontmatter `image`, Markdown `<img src>`, gallery, and poster paths. Do not merely rename a JPEG to `.png`. Existing PNG placeholders can remain until replaced. Landscape photos around 1600 px wide are a useful starting point; compress large files before committing.
 
-Main photos fit inside wide tile and case-study frames without cropping or stretching. Square and portrait images get white padding where needed. Tile photos and their backing sit beneath a dark text overlay; case-study covers show the white padding at full brightness.
+Main photos fit inside wide tile and case-study frames without cropping or stretching. Empty space around square and portrait images matches the site's `--bg` charcoal background. Tile photos sit beneath a gradient that is lighter over the upper image area and darkens behind the text. White pixels already inside an uploaded image are not recolored; only the surrounding frame is styled.
 
-In `src/styles/global.css`, `.project-image img` controls normal tile opacity (`.75`), and `.project-link:hover .project-image img, .project-link:focus-visible .project-image img` controls hover/focus opacity (`.9`). Higher values show more of the photo. `.has-image .project-link::before` controls the dark gradient overlay. `object-fit: contain` and `background: white` control image fitting and padding; `.case-image img` applies these settings to case-study covers.
+In `src/styles/global.css`, the `:root` variables `--tile-image-opacity: .99` and `--tile-image-hover-opacity: 1` control normal and hover/focus photo opacity. Higher values show more of the photo. `.has-image .project-link::before` controls the dark gradient overlay. `object-fit: contain` and `background: var(--bg)` control image fitting and padding; `.case-image img` applies these settings to case-study covers. These controls do not affect the opener's separate overlay setting.
 
 Update `imageAlt` at the top of the project's Markdown and the prototype `<img>`'s `alt` text in the body when replacing the images. Change captions as needed. If you prefer JPEG/WebP/AVIF, update the frontmatter `image` or the prototype `src` to the new filename instead. No layout changes are needed.
 

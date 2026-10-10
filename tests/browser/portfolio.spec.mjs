@@ -51,11 +51,14 @@ test('project photos fit wide frames without cropping and tile opacity leaves te
   const image = first.locator('.project-image img');
   await page.mouse.move(0, 0);
   await expect(image).toHaveCSS('object-fit', 'contain');
-  await expect(image).toHaveCSS('background-color', 'rgb(255, 255, 255)');
-  await expect(image).toHaveCSS('opacity', '0.75');
+  await expect(image).toHaveCSS('background-color', 'rgb(16, 18, 20)');
+  const opacity = await image.evaluate((element) => Number(getComputedStyle(element).getPropertyValue('--tile-image-opacity')));
+  expect(opacity).toBeGreaterThanOrEqual(0.9);
+  expect(opacity).toBeLessThanOrEqual(1);
+  await expect(image).toHaveCSS('opacity', String(opacity));
   await expect(first.locator('.project-info')).toHaveCSS('opacity', '1');
   await first.focus();
-  await expect(image).toHaveCSS('opacity', '0.9');
+  await expect(image).toHaveCSS('opacity', '1');
   await expect(image).toHaveCSS('transform', 'none');
   await page.screenshot({ path: testInfo.outputPath('fitted-tiles.png'), fullPage: true });
   const projects = await cards.evaluateAll((links) => links.map((link) => ({
@@ -67,11 +70,57 @@ test('project photos fit wide frames without cropping and tile opacity leaves te
   const cover = page.locator('.case-image img');
   await cover.evaluate((element) => element.decode());
   await expect(cover).toHaveCSS('object-fit', 'contain');
-  await expect(cover).toHaveCSS('background-color', 'rgb(255, 255, 255)');
+  await expect(cover).toHaveCSS('background-color', 'rgb(16, 18, 20)');
   const dimensions = await cover.boundingBox();
   expect(dimensions.width).toBeGreaterThan(dimensions.height);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: testInfo.outputPath('fitted-cover.png'), fullPage: true });
+});
+
+test('Necklace Light tile image is lifted without moving its case-study cover', async ({ page }, testInfo) => {
+  await page.goto('/');
+  const tile = page.locator('.project-link[href="/projects/necklace-light/"]');
+  const image = tile.locator('img');
+  await image.evaluate((element) => element.decode());
+  await expect(image).toHaveCSS('object-position', '50% -100px');
+  await expect(image).toHaveCSS('object-fit', 'contain');
+  await tile.scrollIntoViewIfNeeded();
+  await tile.screenshot({ path: testInfo.outputPath('necklace-tile.png') });
+  await tile.click();
+  const cover = page.locator('.case-image img');
+  await cover.evaluate((element) => element.decode());
+  await expect(cover).toHaveCSS('object-position', '50% 50%');
+  await expect(cover).toHaveCSS('object-fit', 'contain');
+});
+
+test('SMS Questions is discoverable and describes the isolated home deployment', async ({ page }, testInfo) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Software', exact: true }).click();
+  await expect(page.locator('[data-project]:visible')).toHaveCount(1);
+  const project = page.locator('[data-project]:visible');
+  await expect(project.locator('h3')).toHaveText('SMS-Questions');
+  const tileImage = project.locator('img');
+  await expect(tileImage).toHaveAttribute('src', '/images/projects/sms-questions/architecture.png');
+  await expect(tileImage).toHaveAttribute('alt', /Architecture illustration/);
+  await tileImage.evaluate((element) => element.decode());
+  await page.locator('#work').scrollIntoViewIfNeeded();
+  await page.screenshot({ path: testInfo.outputPath('sms-tile.png') });
+  await project.locator('a').click();
+  await expect(page).toHaveURL(/\/projects\/sms-questions\/$/);
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('SMS-Questions');
+  await expect(page.locator('.prose')).toContainText('webserver locally on Proxmox on my home server');
+  await expect(page.locator('.prose')).toContainText('local Android phone providing the SMS gateway');
+  await expect(page.locator('.prose')).toContainText('only way for an external participant');
+  await expect(page.locator('.prose')).toContainText('over Wi-Fi');
+  const cover = page.locator('.case-image img');
+  await expect(cover).toHaveAttribute('src', '/images/projects/sms-questions/architecture.png');
+  await cover.evaluate((element) => element.decode());
+  await expect(cover).toHaveCSS('object-fit', 'contain');
+  await expect(page.locator('.prose')).toContainText('not a photograph of my phone or server rack');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(result.violations).toEqual([]);
+  await page.screenshot({ path: testInfo.outputPath('sms-questions.png'), fullPage: true });
 });
 
 test('category, search, reset, and shareable filter URLs work', async ({ page }) => {

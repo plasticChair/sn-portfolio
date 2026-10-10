@@ -6,7 +6,7 @@ summary: "A wearable-light circuit that pairs adjustable power with a microphone
 category: "Wearables"
 status: "Design documented"
 tags: ["Analog electronics", "Microphone", "Wearable lighting"]
-order: 7
+order: 1
 role: "Analog circuit design & PCB layout"
 tools: ["KiCad", "PCB fabrication files"]
 ---

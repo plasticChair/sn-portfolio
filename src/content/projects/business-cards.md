@@ -6,7 +6,7 @@ imageAlt: "Business Cards project"
 category: "Wireless"
 status: "Design documented"
 tags: ["NFC", "PCB design", "NT3H1101"]
-order: 15
+order: 12
 role: "Circuit design, PCB layout & visual design"
 tools: ["KiCad", "PCB fabrication files"]
 ---

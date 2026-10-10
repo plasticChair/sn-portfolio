@@ -6,7 +6,7 @@ summary: "An inline LED-strip board that combines a protected power switch with 
 category: "Power"
 status: "Design documented"
 tags: ["LED strips", "Load switching", "Signal buffering"]
-order: 2
+order: 14
 role: "Circuit design & PCB layout"
 tools: ["KiCad", "PCB fabrication files"]
 ---
