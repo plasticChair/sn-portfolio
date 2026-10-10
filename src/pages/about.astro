@@ -1,0 +1,13 @@
+---
+import { ArrowUpRight, Mail, CodeXml, BriefcaseBusiness, Download } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import { portfolio } from '../config';
+---
+<Layout title="About">
+  <div class="container about-page">
+    <header class="about-header"><span class="eyebrow">A bit about me</span><h1>{portfolio.name}<span class="accent">.</span></h1><p>{portfolio.about.heading}</p></header>
+    <div class:list={['about-grid', { 'without-image': !portfolio.about.image }]}>{portfolio.about.image && <figure><img src={portfolio.about.image} alt={portfolio.about.imageAlt} width="1600" height="1067" fetchpriority="high" /></figure>}<div class="about-copy">{portfolio.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}{portfolio.location && <span class="availability">Based in {portfolio.location}</span>}{portfolio.resume && <a class="text-link" href={portfolio.resume} download>Download resume <Download size={17} aria-hidden="true" /></a>}</div></div>
+    <section class="about-disciplines" aria-labelledby="disciplines-title"><h2 id="disciplines-title">Where I like to work</h2><div>{portfolio.disciplines.map((discipline, index) => <article><span class="eyebrow">0{index + 1}</span><h3>{discipline.name}</h3><p>{discipline.detail}</p></article>)}</div></section>
+    <section id="contact" class="about-contact"><div><h2>Get in touch</h2></div><div class="contact-details">{portfolio.email ? <a class="contact-email" href={`mailto:${portfolio.email}`}><Mail size={22} aria-hidden="true" />{portfolio.email}<ArrowUpRight size={22} aria-hidden="true" /></a> : <p>Contact details coming soon.</p>}<div class="social-links">{portfolio.github && <a class="text-link" href={portfolio.github} target="_blank" rel="noopener noreferrer"><CodeXml size={18} aria-hidden="true" /> GitHub <span class="sr-only">(opens in a new tab)</span><ArrowUpRight size={15} aria-hidden="true" /></a>}{portfolio.linkedin && <a class="text-link" href={portfolio.linkedin} target="_blank" rel="noopener noreferrer"><BriefcaseBusiness size={18} aria-hidden="true" /> LinkedIn <span class="sr-only">(opens in a new tab)</span><ArrowUpRight size={15} aria-hidden="true" /></a>}</div></div></section>
+  </div>
+</Layout>

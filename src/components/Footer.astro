@@ -1,0 +1,15 @@
+---
+import { ArrowUpRight, CodeXml, BriefcaseBusiness } from '@lucide/astro';
+import { portfolio } from '../config';
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="footer-brand" href="/">{portfolio.name}<span class="footer-dot">.</span></a>
+    <p>&copy; {new Date().getFullYear()} {portfolio.name}</p>
+    <div class="footer-links">
+      {portfolio.github && <a href={portfolio.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub (opens in a new tab)" title="GitHub"><CodeXml size={18} aria-hidden="true" /></a>}
+      {portfolio.linkedin && <a href={portfolio.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (opens in a new tab)" title="LinkedIn"><BriefcaseBusiness size={18} aria-hidden="true" /></a>}
+      <a href="/about/#contact">Get in touch <ArrowUpRight size={15} aria-hidden="true" /></a>
+    </div>
+  </div>
+</footer>

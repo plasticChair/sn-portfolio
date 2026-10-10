@@ -1,0 +1,22 @@
+---
+import { ArrowUpRight, CircuitBoard, Hand, BatteryCharging, Radio, Car, Sprout } from '@lucide/astro';
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'>; index: number }
+const { project, index } = Astro.props;
+const { data } = project;
+const search = [data.title, data.summary, data.category, ...data.tags, ...data.tools, data.year].join(' ');
+const icons: Record<string, typeof CircuitBoard> = { Wearables: Hand, Power: BatteryCharging, Wireless: Radio, Automotive: Car, Automation: Sprout };
+const Icon = icons[data.category] ?? CircuitBoard;
+---
+<article class:list={['project-card', { 'has-image': Boolean(data.image) }]} data-project data-category={data.category} data-search={search}>
+  <a class="project-link" href={`/projects/${project.id}/`}>
+    {data.image && <div class="project-image" style={`--image-position: ${data.imagePosition}`}>
+      <img src={data.image} alt={data.imageAlt} width="1600" height="1067" loading={index === 0 ? 'eager' : 'lazy'} fetchpriority={index === 0 ? 'high' : 'auto'} />
+    </div>}
+    <div class="project-info">
+      <div class="project-eyebrow"><span><Icon size={16} aria-hidden="true" />{data.category}</span>{data.year && <span>{data.year}</span>}</div>
+      <h3>{data.title}<ArrowUpRight size={20} aria-hidden="true" /></h3>
+      <p>{data.summary}</p>
+    </div>
+  </a>
+</article>

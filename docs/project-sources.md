@@ -1,0 +1,50 @@
+# Project Source Notes
+
+These notes connect the portfolio drafts to their source evidence. Paths in the original two project tables are relative to `E:\Designs`; additional projects are documented separately below. The archives were read only; no source circuit, firmware, or manufacturing file was changed. No WiFi credentials, authentication keys, or firmware binaries are included in the portfolio.
+
+The Markdown is a curated snapshot, not a live import. Later design changes will not automatically rewrite the case studies. Cloudflare needs only this portfolio repository; it never needs access to `E:\Designs`.
+
+## Evidence Rules
+
+- Prefer placed PCB `Value` properties, actual schematic labels/notes, and application code over unused symbols inside KiCad's embedded libraries.
+- Production BOMs can exclude hand-fitted modules or components marked not for assembly. An omitted BOM entry does not prove that a sensor is absent from the PCB.
+- Treat filenames, `ORDERED`/`SHIPPED` folders, Gerbers, and backup counts as archive structure, not proof of successful testing or production qualification.
+- Do not derive a project year from a KiCad file-format version or a file's last-modified time.
+- Keep older firmware experiments separate from current board revisions. Do not describe two alternate MCU implementations as two processors on one board.
+- Describe thresholds and delays as schematic annotations or programmed behavior unless measurement records confirm them.
+- A connector's footprint name does not establish its actual interface. Use its connected signals.
+
+## Wearables, Power, and Interfaces
+
+| Portfolio entry | Source files | Confirmed basis / remaining questions |
+| --- | --- | --- |
+| Heated Gloves | `HeatedGloves/HeatedGloves.kicad_pcb`; root `HeatedGloves.kicad_sch`, `Heaters.kicad_sch`, `Sensor.kicad_sch`, `Power.kicad_sch`; `Code/HeatedGloves_V0` and `Code/HeatedGloves_V1` | Placed ATtiny1627, LMT84, INA186, switching FETs; five heater connections but three enable signals; four temperature-sense outputs. Confirm physical zone mapping, operating temperature limits, battery configuration, and firmware version used in the build. |
+| LED Strip Protector | `LED_Strip_Protector/all/LED_Strip_Protector.kicad_pcb` and `.kicad_sch`; `2.7mm`, `5mm`, `9.5mm` variants and panel/assembly files | Placed AP22814BW5-7 and SN74AHCT1G125DBVR; switched-power and signal nets. Confirm assembled variant, actual strip voltage/type, load/current limit, and signal tests. No invented 12/24 V compatibility. |
+| LiPo 3S Cutoff | `Lipo_Cutoff_3s/Lipo_Cutoff_3s.kicad_pcb` and `.kicad_sch`; enclosure/assembly files | LM4040 2.5 V reference, LM324B/TLV171/TLV1812 analog circuitry, SI7153DN switch, 2N7002 control FETs, fuse and indicator. Literal annotations include 3x3.3 V reference example, ~0.3 V hysteresis, and 55 C/40 C thermal example. Confirm assembled settings and measured trip points; do not equate pack cutoff with per-cell balancing/protection. |
+| Necklace Light | `necklace_light/necklace_light/necklace_light.kicad_pcb` and `.kicad_sch`; `necklace_light_attiny202` variant; body/top/knob models | Main board placed TLV75801, potentiometer, slide switch, and output connectors. Voltage adjustment is annotated, not measured. Confirm battery, light source, output arrangement, and which variant was actually built; do not infer RGB firmware from a folder name. |
+| Plant Mister | `PlantMister/PlantMister.kicad_pcb` and `.kicad_sch`; fabrication/mechanical files | ATSAMD09, RV-3028 clock, BQ21040, LM3671, TPS61232; `Period_Adjust`, `Duration_Adjust`, `ManualEn`, `Mister_En`, `5V_En`. Confirm connected misting device and scheduling firmware. Do not infer soil-moisture sensing or a particular pump/solenoid. |
+| USB Mux | `USB_Mux/USB_Mux/USB_Mux.kicad_pcb` and `.kicad_sch`; `Code/USB_Mux/USB_Mux/main.c` | ATSAMD11, PI3USB102, INA181, LM321, four copper layers; five-state disconnect/select/reconnect application with explicit delays. Confirm compatibility, actual current-detection threshold, and assembled revision. No USB-PD or certified throughput claim. |
+| Wrist Light | `Wrist_light/wrist_light/wrist_light.kicad_pcb` and `.kicad_sch` | Placed CMM-3125AT microphone, LM321, TLV75801, BSS316N, switch/trimmer; LED output and analog-input nets. Confirm intended sound response, light source, supply arrangement, and final enclosure. No inferred BLE controller or RGB animation. |
+
+## Vehicle, Base Station, and Archive
+
+| Portfolio entry | Source files | Confirmed basis / remaining questions |
+| --- | --- | --- |
+| MultiCamera | `Tacoma/multiCamera/multiCamera/{multiCamera,micro,Power,Signal_Video}.sch` and PCB; `Tacoma/multiCamera/Code/MKL03Z16xxx4_Project_videoSwitcher_SHIPPED_V3/source/MKL03Z16xxx4_Project_videoSwitcher.c` | Four video inputs, MAX4565, MKL03Z16, AP63203 step-down supply; front/rear/reverse states, manual override, timed transition. Confirm actual installed firmware, harness, camera/display format, and field results. The MCU selects analog video; it does not imply a digital image processor. |
+| Auto Relay Driver | `Tacoma/AutoRelayDriver/AutoRelayDriver.sch`, PCB and Gerbers | Literal schematic title `12V Relay Driver` (spacing normalized), dated `2020-06-01`; `In+`, `Out+`, battery and ground; AO4430A/FDW254P references, SMAJ15CA-named footprints. Legacy generic values and symbol/footprint choices need assembled-BOM review before detailed ratings. 2020 is a documented schematic year, not an asserted completion date. |
+| ESP Base Station | `ESP-NowStation/ESP-BreakoutBoard/ESP-BreakoutBoard.kicad_pcb`; root, `microController`, `Power`, `UI` schematics | Placed ESP32-SOLO-1, FT231XS, BQ21040, LM3671, headers, LEDs, buttons/jumpers. Public title intentionally changed from ESP-BreakoutBoard. Confirm application protocol, peers, antennas/enclosure, and measured operation. |
+| FindMe Compass | `Archive/FindMeCompass/Plus Version/FindMeCompass.kicad_pcb` and `.kicad_sch`; production files and mechanical archive | Actual PCB values contain XIAO ESP32-S3 Plus, SAM-M10Q-00B, BNO086, APX803L; display/guide-light/sensor interfaces. Some modules are absent from the production BOM but present on the PCB. Confirm navigation firmware, screen, radio module (SX1262 signal labels alone are not proof), and calibration/trials. |
+| Garage Door Remote | `Archive/GarageDoorRemote/GarageDoorRemoteTx` and `GarageDoorRemoteRx` PCBs/schematics; Tx `Code/SAMD11/GarageDoorLoraTx/GarageDoorLoraTx/main.c`; Rx `Code/GarageDoorLoraRx/GarageDoorLoraRx/{main,device_helpers}.c` | Paired ATSAMD11/LoRa1276 boards; Tx charging; Rx CPC1006NTR. Current Tx repeats `auth_send`; Rx checks an 8-byte nonce/token packet and pulses relay 750 ms on first accepted stream packet. The verifier compares `auth_hash(nonce)` with token and does not itself track used nonces. Do not claim LoRaWAN, AES authentication, replay resistance, universal opener support, or final low-power button behavior from older experiments. No key values copied. |
+| Sony Remote | `Archive/Sony_Remote/KiCad/remote_mod/remote_mod.kicad_pcb`; `Code/MPLab/{main,helper,perif_control}.c` and project configuration; older AVR variants | Placed ATtiny45V, MAX40200, MMBT3904; input combinations select four-byte volume arrays; interrupt/state-machine timing and sleep routines. Confirm device, actual output/emitter connection, protocol and measured waveform. Do not guess SIRC or carrier frequency from a partial timer setting. |
+| WiFi Button | `Archive/WiFi_Button/WIFIButton/WIFIButton.kicad_pcb`; `{microController,Power,UI}.sch`; enclosure exports | ESP32-SOLO-1, BQ21040, LM3671, FDW254P, physical button and `GPIO_PWR`/`Button_State`/`GPIO_LED`/`BATT_SWITCH` nets. JTAG labels are TMS/TDI/TCK/TDO despite ARM-named footprint. Confirm action, firmware, power sequence, charging arrangement, and network feedback. No assumed cloud integration or runtime. |
+
+## Additional Projects
+
+- **Business Cards:** `E:\Deadbug\BusinessCards\BusinessCards\BusinessCards.kicad_pcb` and `BusinessCards.sch`. Placed NT3H1101W0FHKH, capacitor/resistor/LED and logo footprints. Literal board outline runs from (85,100) to (175,150), establishing 90 x 50 mm. Schematic has LA/LB labels and an antenna-loop symbol, but generic component values and antenna wiring need assembled-revision review. Date/title/revision fields are blank; no NFC range, encoded content, memory size, or confirmed phone compatibility is claimed. V0/V1, STEP, and Gerbers are archive evidence, not production/testing proof.
+- **Cyr Wheel:** added from the owner's statement that they created a Cyr wheel. No design-folder path, measurements, material, joining method, or safety-testing results have been provided. The case study is a build/media draft with four photo slots and a video placeholder. Physical-design considerations are not claims of a verified fabrication method or a certified apparatus.
+
+## Finish the Drafts
+
+The purpose and circuit sections reflect design evidence. Engineering challenges are reasoned design considerations, not a claim that you personally encountered every listed issue or already solved it. Rewrite them with your actual decisions, rejected alternatives, and measurements as those details become available.
+
+For each project, the most useful next inputs are: the build/installed revision, why you made it, one or two meaningful engineering decisions, its actual completion status, and photographs. The public case studies intentionally omit local file paths and private source material.

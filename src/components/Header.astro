@@ -1,0 +1,49 @@
+---
+import { ArrowUpRight, Menu, X } from '@lucide/astro';
+import { portfolio } from '../config';
+const onAbout = Astro.url.pathname.startsWith('/about');
+---
+<header class="site-header container">
+  <a class="brand" href="/" aria-label={`${portfolio.name}, home`}>
+    <span class="brand-mark">{portfolio.initials}</span>
+    <span class="brand-name">{portfolio.name}<span class="brand-role">{portfolio.title}</span></span>
+  </a>
+  <button class="menu-toggle icon-button" data-menu-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation" title="Open navigation" hidden>
+    <Menu class="menu-open-icon" size={22} aria-hidden="true" />
+    <X class="menu-close-icon" size={22} aria-hidden="true" />
+  </button>
+  <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+    <a class:list={['nav-link', { active: !onAbout }]} href="/#work" aria-current={!onAbout ? 'page' : undefined}>Work</a>
+    <a class:list={['nav-link', { active: onAbout }]} href="/about/" aria-current={onAbout ? 'page' : undefined}>About</a>
+    <a class="nav-contact" href="/about/#contact">Contact <ArrowUpRight size={16} aria-hidden="true" /></a>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const nav = document.querySelector<HTMLElement>('#site-nav');
+  if (toggle && nav) {
+    toggle.hidden = false;
+    document.documentElement.classList.add('js');
+    const close = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+      nav.classList.remove('is-open');
+    };
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+      nav.classList.toggle('is-open', open);
+    });
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        close();
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', (event) => {
+      if (event.target instanceof Node && !nav.contains(event.target) && !toggle.contains(event.target)) close();
+    });
+  }
+</script>

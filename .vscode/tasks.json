@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Portfolio: Dev server",
+			"type": "shell",
+			"command": "npm",
+			"args": ["run", "dev", "--", "--port", "4321"],
+			"windows": {
+				"command": "npm.cmd",
+				"options": {
+					"env": {
+						"Path": "${env:TEMP}\\portfolio-node\\node-v22.22.0-win-x64;${env:Path}"
+					}
+				}
+			},
+			"isBackground": true,
+			"problemMatcher": []
+		}
+	]
+}
