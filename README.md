@@ -184,7 +184,7 @@ Official guides: [Astro on Pages](https://developers.cloudflare.com/pages/framew
 ## Before publishing
 
 - Replace the placeholder name and add your contact details.
-- Review the design-based project drafts, confirm your role and actual results, and add dates/status only where known.
+- Review the design-based project drafts, confirm actual results, and add dates/status only where known.
 - Add your own project photos when available; photo-free entries are fully supported.
 - Set `SITE_URL` to your actual domain in Cloudflare.
 - Run the build, unit/static tests, and browser tests.
