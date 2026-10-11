@@ -1,47 +1,36 @@
 ---
 title: "SMS-Questions"
-summary: "Daily questions and response summaries over SMS for FREE! Done by using a local Android gateway and an isolated Proxmox-hosted application on my home server.  This allows for a large number of users to use this service without having to download a seperate app"
+summary: "Daily questions and response summaries over SMS for FREE! Done by using a local Android gateway and an isolated Proxmox-hosted application on my home server. This allows for a large number of users to use this service without having to download a separate app."
 category: "Software"
 tags: ["SMS", "Android", "Node.js", "Express", "MySQL", "Proxmox", "Self-hosted"]
 image: "/images/projects/sms-questions/architecture.png"
 imageAlt: "Architecture illustration: an Android SMS gateway exchanges questions and replies over Wi-Fi with a locally hosted application on a Proxmox home server."
 order: 8
-role: "Application development & local deployment"
 tools: ["Node.js", "Express", "MySQL", "node-cron", "Android SMS gateway", "Proxmox"]
 ---
 
 ## The project
 
-SMS-Questions sends daily questions by text message and collects replies without requiring participants to install a separate app. The application supports pairing participants, scheduling questions, tracking responses, and sending summaries. Message commands provide an interface for joining, pairing, and changing preferences.
+The idea came from someone I used to date. Our texting styles and schedules were completely off (maybe a good sign not to date...). In order to help our communication, I decided to create something that would text us both a question in the morning. When both of us would respond, it would then send us each other's response. And yes, they do have apps for this, but we both found it a hassle to remember to log in to the app and click through the prompts and respond. The idea was to make this as simple and fluid as possible.
 
-The phone is the SMS interface, not the application host. I run the webserver locally on Proxmox on my home server, with a local Android phone providing the SMS gateway.
-
-The cover is an architecture illustration, not a photograph of my phone or server rack, or a screenshot of the live interface.
 
 ## Local deployment
 
-My deployment is isolated: the only way for an external participant to communicate with the application is through the Android phone. The phone communicates with the locally hosted application and SMS gateway over Wi-Fi; the webserver is not directly exposed to participants on the Internet.
+I searched online to find a solution for this. They have SMS services that one can use to send texts, and they charge anywhere from $0.005-$0.02 or so per text. Not a dealbreaker, but for some services, you had to be a bigger company or they charged you more. And there were some other annoyances I later found out about.
 
-Incoming messages travel from the cellular SMS network to the Android phone, then across the local Wi-Fi connection to the application's incoming-message handler. Outgoing questions and summaries take the reverse route: the home-server application asks the Android gateway to send an SMS, and the phone delivers it through the cellular network.
-
-Proxmox hosts the server-side application; the Android device supplies the connection between the cellular network and the local service. This is the deployment arrangement, not an air gap or a claim of independently verified security. The phone and its Wi-Fi connection remain part of the system's trust boundary.
+After some more research, I decided to self-host a solution instead, where the only cost was $6-8 a month for a SIM card with unlimited texts. I grabbed my old Android phone, found an open-source SMS gateway app someone made, modified the source to add support for MMS/RCS messaging, and created a Linux VM on my server to host the actual application. The interesting part about this design is that my app is actually isolated from the Internet. The only traffic allowed is through the Wi-Fi connection to my phone, and it rejects everything that isn't formatted a particular way.
 
 ## Application architecture
 
 The server uses **Node.js and Express**, with **MySQL** storing users, pairings, questions, sessions, responses, and message state. Scheduled jobs use **node-cron** to check when questions are due and maintain daily sessions.
 
-An incoming SMS handler routes participant commands and replies into the appropriate workflow. Incoming-message tracking supports duplicate detection, while outgoing-message records track send state and support retry handling. Response processing connects each reply to a question session and prepares a summary when the required responses have arrived.
+An incoming SMS handler routes users' commands and replies into the appropriate workflow. Incoming-message tracking supports duplicate detection, while outgoing-message records track send state and support retry handling. Response processing connects each reply to a question session and prepares a summary when the required responses have arrived.
 
-The source also contains subscription-controlled conversation forwarding, allowing paired participants to continue an exchange through the gateway after answering a question. This capability is distinct from the basic daily-question workflow; it is not a claim about subscriber counts or commercial use.
 
 ## Engineering considerations
 
 - **Message state:** repeated callbacks, delayed replies, and retries need to be distinguished from new answers so a question is not processed twice.
 - **Scheduling:** daily questions must respect participant preferences and session boundaries rather than relying on a single untracked timer.
 - **Device availability:** gateway connectivity, phone power, and cellular service affect delivery even when the home-server application is running.
-- **Local boundaries:** Wi-Fi access and gateway endpoints need appropriate controls; local hosting alone does not establish authentication or confidentiality.
 - **Personal data:** phone numbers and responses are private application data, not portfolio assets. No participant records, message contents, credentials, or database backups are published here.
-
-## Deployment record
-
-The Android phone, local Wi-Fi connection, and Proxmox home-server deployment describe how I run this project. Delivery latency, uptime, recovery after gateway outages, and participant scale remain to be documented with actual observations; no measured performance or security certification is implied.
+- **Bot Detection:** My SIM card would flag my texts as being from a bot and would block them if a response to a text was sent too fast. Throttling was needed to prevent this.

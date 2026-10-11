@@ -77,8 +77,21 @@ test('project photos fit wide frames without cropping and tile opacity leaves te
   await page.screenshot({ path: testInfo.outputPath('fitted-cover.png'), fullPage: true });
 });
 
-test('Necklace Light tile image is lifted without moving its case-study cover', async ({ page }, testInfo) => {
+test('only Necklace Light has the upward tile shift and covers stay centered', async ({ page }, testInfo) => {
   await page.goto('/');
+  const tiles = page.locator('.project-image img');
+  await tiles.evaluateAll(async (images) => {
+    images.forEach((image) => { image.loading = 'eager'; });
+    await Promise.all(images.map((image) => image.decode()));
+  });
+  const positions = await tiles.evaluateAll((images) => images.map((image) => ({
+    href: image.closest('a').getAttribute('href'),
+    position: getComputedStyle(image).objectPosition,
+  })));
+  expect(positions.length).toBeGreaterThan(0);
+  for (const image of positions) {
+    expect(image.position).toBe(image.href === '/projects/necklace-light/' ? '50% -100px' : '50% 50%');
+  }
   const tile = page.locator('.project-link[href="/projects/necklace-light/"]');
   const image = tile.locator('img');
   await image.evaluate((element) => element.decode());

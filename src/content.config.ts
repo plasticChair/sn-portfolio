@@ -27,7 +27,6 @@ const projects = defineCollection({
     order: z.number().default(100),
     draft: z.boolean().default(false),
     demo: z.boolean().default(false),
-    role: z.string().default('Design & development'),
     duration: z.string().optional(),
     tools: z.array(z.string()).default([]),
     outcomes: z.array(z.object({ value: z.string(), label: z.string() })).default([]),

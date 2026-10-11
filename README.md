@@ -61,7 +61,7 @@ No manual HTML or navigation edits are needed. A new category automatically beco
 | `status` | Optional `Complete`, `In progress`, `Prototype`, or `Design documented`; shown on the case study |
 | `tags` | Technologies used in search and shown on the case study, not piled onto catalog cards |
 | `image`, `imageAlt` | Optional local cover photo; alt text is required when an image is supplied |
-| `imagePosition` | Optional CSS position, e.g. `35% center` |
+| `imagePosition` | Optional image position, e.g. `35% center`; used for covers and tiles without a tile override |
 | `tileImagePosition` | Optional catalog-only image position; overrides `imagePosition` on the tile without moving the case-study cover |
 | `gallery` | Optional additional `{ src, alt, caption }` photos, shown in a responsive gallery |
 | `video`, `videoPoster`, `videoCaption` | Optional local MP4/WebM, cover image, and caption; a poster without `video` creates a non-playing placeholder |
@@ -69,7 +69,7 @@ No manual HTML or navigation edits are needed. A new category automatically beco
 | `order` | Lower values first, after featured projects; year and title break ties |
 | `draft` | Excludes a project from cards, routes, and sitemap |
 | `demo` | Marks sample content visibly; use `false` for your real work |
-| `role`, `duration`, `tools` | Project details in the sidebar |
+| `duration`, `tools` | Project details in the sidebar |
 | `outcomes` | Optional list of `{ value, label }` highlights |
 | `links` | Optional list of `{ label, url }` resources using HTTP(S) URLs |
 

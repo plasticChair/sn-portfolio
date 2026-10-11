@@ -1,25 +1,24 @@
 ---
 title: "LED Strip Protector"
 image: "/images/projects/led-strip-protector/final.jpg"
-imageAlt: "LED Strip Protector project"
-summary: "An inline LED-strip board that combines a protected power switch with a buffered data path in several connection widths."
+imageAlt: "LED Strip Protector Project"
+summary: "An inline LED-strip board that combines a protected power switch with a buffered data path to reduce potential damage to the LED strip."
 category: "Power"
 status: "Design documented"
 tags: ["LED strips", "Load switching", "Signal buffering"]
 order: 14
-role: "Circuit design & PCB layout"
 tools: ["KiCad", "PCB fabrication files"]
 ---
 
 ## The project
 
-LED strips combine a power load and a digital signal on a small connection. This design places a switched power path and a signal buffer between the upstream connection and the strip, with layouts for different physical widths.
+I have been designing more wearable projects recently. And most of them involve LED strips, down to 2.7 mm in width. The faults that I've seen that are more common are due to strain relief, or lack thereof. The idea behind this project was to stiffen the interface between the power/comm wires and the tiny 2.7 mm strips. This reduces the risk of the power wire shorting the data line and blowing the entire rest of the strip.
 
-## Circuit architecture
+## The Design
 
-The placed board components include an **AP22814BW5-7** power-distribution switch and an **SN74AHCT1G125** tri-state buffer. Nets distinguish incoming LED power, switched power, ground, and the data signal rather than treating the strip as a simple two-wire load.
+The board uses an **AP22814BW5-7** power-distribution switch and an **SN74AHCT1G125** tri-state buffer to isolate the driver from the LED strip. With short-circuit protection, power will get cut to the LED strip if the input is shorted. In combination with the signal buffer, this will prevent the strip from being damaged if a wire shorts anything else.
 
-The design archive contains **2.7 mm, 5 mm, and 9.5 mm** variants, as well as a combined design and panel files. Those versions address how the same circuit connects to different strip geometries. Fabrication BOMs and component-position files are available for the individual layouts.
+The design was also duplicated for 5 mm and 9.5 mm LED strips as well. The design also includes notches on the PCB to allow for zip ties or other types of strain relief to be used.
 
 <figure class="prototype-photo">
 	<img src="/images/projects/led-strip-protector/prototype.png" alt="LED Strip Protector prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
@@ -30,8 +29,5 @@ The design archive contains **2.7 mm, 5 mm, and 9.5 mm** variants, as well as a 
 
 - **Power transitions and data behavior:** the signal path needs predictable behavior while the strip's supply is disabled or changing.
 - **Load startup:** strip capacitance and turn-on current must be considered alongside the selected switch's limits and thermal behavior.
-- **Small physical interfaces:** pad alignment, solder access, and trace area compete for space in the narrowest version.
+- **Small physical size:** 2.7 mm is small, and the PCB needs to be stiff and strong enough to be able to prevent bending.
 
-## Validation to document
-
-The board layout does not establish a tested current rating, cable length, or supported strip voltage. Load-startup measurements, fault response, data-waveform captures, and examples of the fitted strip connections would make those limits explicit.

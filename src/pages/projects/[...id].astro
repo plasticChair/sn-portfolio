@@ -1,5 +1,5 @@
 ---
-import { ArrowLeft, ArrowRight, ArrowUpRight, CirclePlay, Clock, UserRound, CalendarDays } from '@lucide/astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight, CirclePlay, Clock, CalendarDays } from '@lucide/astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
@@ -29,7 +29,6 @@ const sections = headings.filter((heading) => heading.depth === 2);
     <div class="case-body">
       <aside class="case-sidebar" aria-label="Project details">
         <dl class="project-facts">
-          <div><dt><UserRound size={15} aria-hidden="true" /> My role</dt><dd>{data.role}</dd></div>
           {data.duration && <div><dt><Clock size={15} aria-hidden="true" /> Timeline</dt><dd>{data.duration}</dd></div>}
           {data.year && <div><dt><CalendarDays size={15} aria-hidden="true" /> Year</dt><dd>{data.year}</dd></div>}
           {data.tools.length > 0 && <div><dt>Toolbox</dt><dd class="toolbox">{data.tools.map((tool) => <span>{tool}</span>)}</dd></div>}

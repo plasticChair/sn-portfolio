@@ -47,6 +47,7 @@ test('every published Markdown project has a card and a generated page; drafts a
       assert.equal(cards.length, 1, `${slug} should appear exactly once`);
       const page = load(await readFile(path.join(dist, 'projects', slug, 'index.html'), 'utf8'));
       assert.equal(page('h1').text(), data.title);
+      assert.equal(page('.project-facts dt').toArray().some((item) => /my role/i.test(page(item).text())), false, `${slug}: no role label`);
       assert.ok(page('.prose h2').length > 0, `${slug} should have case-study content`);
       assert.equal(page('.case-image img').length, data.image ? 1 : 0, `${slug}: optional cover image`);
       assert.equal(cards.find('.project-image img').length, data.image ? 1 : 0, `${slug}: optional card image`);

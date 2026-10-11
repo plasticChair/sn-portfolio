@@ -7,7 +7,6 @@ category: "Automation"
 status: "Design documented"
 tags: ["SAMD09", "RTC", "Timed control"]
 order: 19
-role: "Circuit design, PCB layout & hardware integration"
 tools: ["KiCad", "Mechanical CAD exports"]
 ---
 

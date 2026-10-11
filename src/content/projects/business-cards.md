@@ -7,34 +7,27 @@ category: "Wireless"
 status: "Design documented"
 tags: ["NFC", "PCB design", "NT3H1101"]
 order: 12
-role: "Circuit design, PCB layout & visual design"
 tools: ["KiCad", "PCB fabrication files"]
 ---
 
 ## The project
 
-A business card is an opportunity to make the medium part of the introduction. This design uses a custom circuit board to bring visual identity and an NFC-tag circuit into the same object.
+A little bit ago I was looking up getting some business cards for when making contacts. But the thought occurred to me that getting regular paper business cards wasn't that impressive if you are trying to make a good impression. What better way to create a business card than with the skills you already have? So I decided to make one from a PCB! In addition to the card, it was possible to add an SMD NFC IC and antenna to easily direct someone to my website or save contact information with a tap and power an LED for added fun.
 
 ## Board and circuit
 
-The reviewed PCB has a **90 × 50 mm** rectangular outline. Logo artwork appears on copper, solder-mask, and silkscreen layers, making the board finish part of the graphic design rather than an afterthought.
+The PCB is a standard business card size with the logo, texture, and text on copper. The texture is just copper with the black solder mask over it. For added style, all exposed copper was ENIG-coated.
 
-The placed components include an **NT3H1101W0FHKH** NFC-tag IC, a capacitor, a resistor, and an LED. The schematic identifies antenna connections as `LA` and `LB` and includes a loop-antenna symbol. Some component values remain generic, so the assembled revision and actual antenna connections need checking before assigning electrical operating limits.
+The NFC IC is an **NT3H1101W0FHKH**, which can be reprogrammed with the NXP NFC app on Android/iOS. Using an online calculator, the NFC antenna size could be calculated and designed, and then adding a capacitor, a resistor, and an LED were the only things remaining.
 
-The archive includes earlier board revisions, a STEP export, and Gerber files. These document design iteration and manufacturing preparation, not a measured NFC read range or proof of a particular encoded payload.
 
 <figure class="prototype-photo">
   <img src="/images/projects/business-cards/prototype.jpg" alt="Business Cards prototype or NFC PCB" width="1600" height="1000" loading="lazy" />
-  <figcaption>Prototype / NFC circuit detail</figcaption>
+  <figcaption>NFC in action with the LED lighting up</figcaption>
 </figure>
 
 ## Engineering challenges
 
-- **Graphics and circuitry sharing a board:** copper artwork, component placement, and routing need to work together without compromising readability or the antenna area.
-- **NFC coupling:** antenna geometry, tuning, nearby metal, and the way a card is presented to a reader affect a reliable tap interaction.
-- **A usable physical object:** board edges, exposed components, and finish selection matter for a card that is handled and carried.
-- **Assembly and encoding:** component choices and the programmed tag content need to match the actual manufactured revision.
+- **Graphics:** Designing the card was the hardest part for me. I was going for a very clean and practical look. I'm really fond of the black solder mask and the ENIG coating contrast.
+- **NFC coupling:** Some of the texture and text is right behind the NFC antenna.  So I was unsure how well the antenna would work.  Fortunately, the antenna worked right away and the copper on the other side and edging didn't cause any issues.  
 
-## Validation to document
-
-Photos of the finished card and the circuit side, the selected component values, the encoded content, and read tests with actual devices would complete the case study. No read-distance, phone-compatibility, or LED behavior claim is inferred from the design files alone.

@@ -7,7 +7,6 @@ category: "Wearables"
 status: "Design documented"
 tags: ["ATtiny1627", "Temperature sensing", "MOSFETs"]
 order: 18
-role: "Circuit design, PCB layout & embedded firmware"
 tools: ["KiCad", "AVR C", "Atmel Studio"]
 ---
 

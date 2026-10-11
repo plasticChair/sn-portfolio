@@ -10,7 +10,6 @@ featured: false
 order: 20
 draft: true
 demo: false
-role: "Circuit design & development"
 tools: ["KiCad"]
 outcomes: []
 links: []
