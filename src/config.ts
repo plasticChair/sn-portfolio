@@ -24,11 +24,12 @@ export const portfolio = {
         hardware design, embedded systems, and software, including experience in the aerospace
         and defense industries. I enjoy tackling open-ended technical problems—taking an idea or
         difficult requirement, exploring different approaches, and figuring out the best path toward
-        a practical solution.`,
+        a practical solution.  I'm often the person people turn to when a problem needs to be understood
+         quickly and a path forward needs to be found.`,
 
       `Outside of work, I take that same approach to my own projects, designing electronics, building
-        prototypes, and iterating on them until they work the way I envisioned. I'm often the person
-        people turn to when a problem needs to be understood quickly and a path forward needs to be found.`,
+        prototypes, and iterating on them until they work the way I envisioned. Check out a sampling of projects 
+        below!  Most of these were done in 2026 (there's way too many to keep updated from previous years).`,
 
       `That curiosity extends well beyond engineering. I'm constantly making or experimenting with
         something—whether it's electronics, sewing, food science, or one of the projects featured here.
