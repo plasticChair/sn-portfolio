@@ -36,7 +36,7 @@ Playwright builds and starts a separate production preview on port 4322 and chec
 
 ## Personalize it
 
-Edit `src/config.ts`: your name, initials, role, introduction, biography, disciplines, and optional email, GitHub, LinkedIn, location, and resume URL. Use full `https://` URLs for social profiles. Put a resume PDF in `public/` and set `resume: '/resume.pdf'`. Empty optional values hide those links rather than create broken placeholders. The home page now uses only the short introduction, not the old promotional tagline sections.
+Edit `src/config.ts`: your name, initials, role, introduction, biography, disciplines, and optional email, GitHub, LinkedIn, location, and resume URL. Use full `https://` URLs for social profiles. Put a resume PDF in `public/` and set `resume: '/resume.pdf'`. Empty optional values hide those links rather than create broken placeholders. The home page shows the short introduction in the opener and the full About me biography above the project catalog. About navigation points to that homepage section; the separate About/contact page remains available.
 
 The visual system lives in `src/styles/global.css`. Colors are CSS variables at the top; layouts, fonts, and responsive breakpoints are in the same file. Change the favicon in `public/favicon.svg` if desired. The source Astro components generate the HTML, bundled CSS, and browser JavaScript automatically.
 
@@ -128,7 +128,9 @@ video: "/videos/cyr-wheel/demo.mp4"
 
 The video placeholder automatically becomes a native player with controls and mobile inline playback. Until a source is configured, the page does not request a missing video or show non-working playback controls. WebM is also supported. Avoid committing very large videos; use a hosted resource link for longer footage. Add captions/subtitles where needed for accessibility.
 
-`portfolio.about.image` and `portfolio.about.imageAlt` can provide your own about-page photo. Change `portfolio.hero.image` to your own workshop photo for the opener, or set it to an empty string for a text-only opening. `portfolio.hero.focus` controls its supporting line. Other demo photos remain unreferenced and are not used for social previews.
+`portfolio.about.image` and `portfolio.about.imageAlt` provide your own photo on the homepage and About page. Put the photo in `public/images/` and set these fields to its local URL (for example, `/images/portrait.jpg`) and descriptive alt text. The homepage has a 4:5 portrait frame beneath the About me heading, to the left of the biography on desktop and above it on mobile. An empty image value shows a person-icon placeholder labeled "Photo coming soon" instead of a broken image.
+
+Change `portfolio.hero.image` to your own workshop photo for the opener, or set it to an empty string for a text-only opening. `portfolio.hero.focus` controls its supporting line. Other demo photos remain unreferenced and are not used for social previews.
 
 ## GitHub and Cloudflare Pages
 

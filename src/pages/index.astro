@@ -1,5 +1,5 @@
 ---
-import { ArrowDown, ArrowUpRight, Search, SlidersHorizontal, X, Wrench } from '@lucide/astro';
+import { ArrowDown, Download, Search, SlidersHorizontal, UserRound, X, Wrench } from '@lucide/astro';
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import ProjectCard from '../components/ProjectCard.astro';
@@ -19,13 +19,31 @@ const categories = [...new Set(projects.map((project) => project.data.category))
         <p class="hero-description">{portfolio.introduction}</p>
         <div class="hero-actions">
           <a class="button button-dark" href="#work">View projects <ArrowDown size={18} aria-hidden="true" /></a>
-          <a class="text-link" href="/about/">About me <ArrowUpRight size={18} aria-hidden="true" /></a>
+          <a class="text-link" href="#about">About me <ArrowDown size={18} aria-hidden="true" /></a>
         </div>
       </div>
       <div class="hero-foot">
         <span>Independent electronics projects</span>
         <a class="text-link" href="#work">Explore the work <ArrowDown size={16} aria-hidden="true" /></a>
       </div>
+    </div>
+  </section>
+  <section id="about" class="home-about container" aria-labelledby="about-title">
+    <div class="home-about-heading">
+      <h2 id="about-title">About me</h2>
+      {portfolio.about.heading && <p>{portfolio.about.heading}</p>}
+      <figure class="home-about-portrait">
+        {portfolio.about.image ? <img src={portfolio.about.image} alt={portfolio.about.imageAlt} width="800" height="1000" loading="lazy" /> :
+          <div class="portrait-placeholder" role="img" aria-label={`${portfolio.name} portrait photo placeholder`}>
+            <UserRound size={64} stroke-width={1} aria-hidden="true" />
+            <span>Photo coming soon</span>
+          </div>}
+      </figure>
+    </div>
+    <div class="home-about-copy">
+      {portfolio.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      {portfolio.location && <span class="availability">Based in {portfolio.location}</span>}
+      {portfolio.resume && <a class="text-link" href={portfolio.resume} download>Download resume <Download size={17} aria-hidden="true" /></a>}
     </div>
   </section>
   <section id="work" class="work-section container" aria-labelledby="work-title">
@@ -61,7 +79,7 @@ const categories = [...new Set(projects.map((project) => project.data.category))
   .opening-hero { --hero-overlay-opacity: .55; position: relative; isolation: isolate; background: #101214; border-bottom: 1px solid var(--line); }
   .hero-backdrop { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 55%; z-index: -2; }
   .opening-hero::before { content: ''; position: absolute; inset: 0; background: rgb(11 14 16 / var(--hero-overlay-opacity)); z-index: -1; }
-  .hero-inner { min-height: min(740px, calc(100svh - 190px)); padding-top: 64px; padding-bottom: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 54px; }
+  .hero-inner { min-height: min(560px, calc(100svh - 280px)); padding-top: 40px; padding-bottom: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 36px; }
   .hero-copy { padding-block: 24px; }
   .hero-copy .eyebrow { color: var(--accent); font-size: 12px; }
   .hero-copy h1 { font-size: 96px; font-weight: 700; line-height: 1.05; margin: 24px 0 18px; max-width: 100%; overflow-wrap: anywhere; }
@@ -73,18 +91,29 @@ const categories = [...new Set(projects.map((project) => project.data.category))
   .hero-actions .text-link { min-height: 48px; font-size: 14px; }
   .hero-foot { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 22px; border-top: 1px solid #ffffff29; font-size: 12px; color: #c2ccd0; }
   .hero-foot .text-link { font-size: 12px; }
-  .opening-hero + .work-section { padding-top: 36px; }
+  .home-about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); gap: 64px; padding-block: 48px; border-bottom: 1px solid var(--line); }
+  .home-about-heading h2 { font-size: 28px; }
+  .home-about-heading > p { margin-top: 12px; color: var(--accent); font-size: 18px; }
+  .home-about-portrait { width: min(280px, 100%); aspect-ratio: 4 / 5; margin-top: 24px; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+  .home-about-portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .portrait-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; background: repeating-linear-gradient(135deg, transparent, transparent 16px, #ffffff03 16px, #ffffff03 17px); color: var(--muted); }
+  .portrait-placeholder svg { color: var(--accent); }
+  .portrait-placeholder span { font-size: 13px; }
+  .home-about-copy { min-width: 0; display: flex; flex-direction: column; align-items: start; gap: 16px; }
+  .home-about-copy p { max-width: 680px; color: var(--muted); font-size: 16px; line-height: 1.85; }
+  .home-about + .work-section { padding-top: 36px; }
   @media (max-width: 1100px) {
     .hero-copy h1 { font-size: 76px; }
   }
   @media (max-width: 800px) {
     .hero-inner { padding-top: 40px; gap: 36px; }
+    .home-about { gap: 32px; }
     .hero-copy h1 { font-size: 64px; }
     .hero-focus { font-size: 21px; }
     .hero-description { font-size: 16px; }
   }
   @media (max-width: 600px) {
-    .hero-inner { min-height: calc(100svh - 180px); padding-top: 26px; padding-bottom: 22px; gap: 30px; }
+    .hero-inner { min-height: auto; padding-top: 26px; padding-bottom: 22px; gap: 30px; }
     .hero-copy { padding-block: 12px; }
     .hero-copy .eyebrow { font-size: 10px; }
     .hero-copy h1 { font-size: 48px; margin-top: 22px; }
@@ -94,7 +123,10 @@ const categories = [...new Set(projects.map((project) => project.data.category))
     .hero-foot { align-items: start; font-size: 10px; gap: 14px; }
     .hero-foot > span { max-width: 130px; }
     .hero-foot .text-link { font-size: 11px; white-space: nowrap; }
-    .opening-hero + .work-section { padding-top: 26px; }
+    .home-about { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 32px; }
+    .home-about-heading h2 { font-size: 24px; }
+    .home-about-copy p { font-size: 15px; }
+    .home-about + .work-section { padding-top: 26px; }
   }
 </style>
 <script>

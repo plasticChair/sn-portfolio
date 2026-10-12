@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-test('opening hero leads into the existing project catalog', async ({ page }, testInfo) => {
+test('opening hero leads into the About introduction before the project catalog', async ({ page }, testInfo) => {
   await page.goto('/');
   const hero = page.locator('.opening-hero');
   await expect(hero).toBeVisible();
@@ -13,14 +13,49 @@ test('opening hero leads into the existing project catalog', async ({ page }, te
     await image.evaluate((element) => element.decode());
   }
   const viewportHeight = page.viewportSize().height;
-  const projectsTop = await page.locator('#work').evaluate((element) => element.getBoundingClientRect().top);
-  expect(projectsTop).toBeLessThan(viewportHeight);
+  const about = page.locator('#about');
+  const aboutTop = await about.evaluate((element) => element.getBoundingClientRect().top);
+  expect(aboutTop).toBeLessThan(viewportHeight);
+  await expect(about.locator('h2')).toHaveText('About me');
+  const paragraphs = await about.locator('.home-about-copy p').allTextContents();
+  expect(paragraphs.length).toBeGreaterThan(0);
+  expect(await page.locator('#work').evaluate((element) => element.getBoundingClientRect().top)).toBeGreaterThan(aboutTop);
+  await hero.getByRole('link', { name: 'About me', exact: true }).click();
+  await expect(page).toHaveURL(/#about$/);
+  await expect(about.getByRole('heading', { name: 'About me', exact: true })).toBeInViewport();
+  await page.goto('/about/');
+  expect(await page.locator('.about-copy p').allTextContents()).toEqual(paragraphs);
+  await page.goto('/');
   const total = await page.locator('[data-project]').count();
   await page.screenshot({ path: testInfo.outputPath('opener.png') });
   await hero.getByRole('link', { name: 'View projects', exact: true }).click();
   await expect(page).toHaveURL(/#work$/);
   await expect(page.getByRole('heading', { name: 'Projects', exact: true })).toBeInViewport();
   await expect(page.locator('[data-project]:visible')).toHaveCount(total);
+});
+
+test('About portrait placeholder sits under its heading beside the introduction', async ({ page }, testInfo) => {
+  await page.goto('/#about');
+  const about = page.locator('#about');
+  const portrait = about.locator('.home-about-portrait');
+  await expect(portrait).toBeVisible();
+  await expect(portrait.getByRole('img', { name: 'Scott Nette portrait photo placeholder' })).toBeVisible();
+  const { headingBox, portraitBox, copyBox } = await about.evaluate((element) => {
+    const bounds = (selector) => {
+      const { x, y, width, height } = element.querySelector(selector).getBoundingClientRect();
+      return { x, y, width, height };
+    };
+    return { headingBox: bounds('h2'), portraitBox: bounds('.home-about-portrait'), copyBox: bounds('.home-about-copy') };
+  });
+  expect(portraitBox.y).toBeGreaterThan(headingBox.y + headingBox.height);
+  expect(portraitBox.width / portraitBox.height).toBeCloseTo(0.8, 1);
+  if (testInfo.project.name === 'mobile') {
+    expect(copyBox.y).toBeGreaterThanOrEqual(portraitBox.y + portraitBox.height);
+  } else {
+    expect(portraitBox.x + portraitBox.width).toBeLessThan(copyBox.x);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await about.screenshot({ path: testInfo.outputPath('about-portrait.png') });
 });
 
 test('home renders local images without overflow or browser errors', async ({ page }, testInfo) => {
@@ -195,7 +230,8 @@ test('mobile menu is keyboard-accessible and desktop navigation is visible', asy
     await expect(toggle).toBeFocused();
     await toggle.click();
     await page.getByRole('link', { name: 'About', exact: true }).click();
-    await expect(page).toHaveURL(/\/about\/$/);
+    await expect(page).toHaveURL(/\/#about$/);
+    await expect(page.locator('#about h2')).toBeInViewport();
   } else {
     await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
   }
@@ -218,8 +254,9 @@ test('projects and navigation remain available without JavaScript', async ({ bro
   const total = await page.locator('[data-project]').count();
   await expect(page.locator('[data-project]:visible')).toHaveCount(total);
   await expect(page.getByRole('navigation', { name: 'Main navigation' })).toBeVisible();
+  await expect(page.locator('#about .home-about-copy p')).not.toHaveCount(0);
   await page.getByRole('link', { name: 'About', exact: true }).click();
-  await expect(page).toHaveURL(/\/about\/$/);
+  await expect(page).toHaveURL(/\/#about$/);
   await context.close();
 });
 

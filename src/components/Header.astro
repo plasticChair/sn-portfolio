@@ -14,7 +14,7 @@ const onAbout = Astro.url.pathname.startsWith('/about');
   </button>
   <nav id="site-nav" class="site-nav" aria-label="Main navigation">
     <a class:list={['nav-link', { active: !onAbout }]} href="/#work" aria-current={!onAbout ? 'page' : undefined}>Work</a>
-    <a class:list={['nav-link', { active: onAbout }]} href="/about/" aria-current={onAbout ? 'page' : undefined}>About</a>
+    <a class:list={['nav-link', { active: onAbout }]} href="/#about" aria-current={onAbout ? 'page' : undefined}>About</a>
     <a class="nav-contact" href="/about/#contact">Contact <ArrowUpRight size={16} aria-hidden="true" /></a>
   </nav>
 </header>
