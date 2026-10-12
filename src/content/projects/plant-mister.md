@@ -19,7 +19,7 @@ I have a few plants that will thrive in high humidity. But living in Colorado me
 The project started out using an ESP32, and I connected that to Home Assistant for smart home control. But I realized that it wasn't the best solution for this project. Battery life is a big concern, and because this uses a small ultrasonic mister, it is power-hungry. Having an ESP32 connect periodically to get the current time (because its onboard RTC isn't very accurate) wasn't the best idea. So I decided to make this into a simple timed device. I used an external RTC and a SAMD09 to control it. The design uses an LED bar to indicate the interval; each lit LED indicates ~1.5 hours. It is controlled with a single button press to increase the time. Simple.
 
 <figure class="prototype-photo">
-	<img src="/images/projects/plant-mister/prototype.jpg" alt="Plant Mister prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
+	<img src="/images/projects/plant-mister/prototype.png" alt="Plant Mister prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
 	<figcaption>Prototype / internal PCB</figcaption>
 </figure>
 

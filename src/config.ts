@@ -32,12 +32,12 @@ export const portfolio = {
         below!  Most of these were done in 2026 (there's way too many to keep updated from previous years).`,
 
       `That curiosity extends well beyond engineering. I'm constantly making or experimenting with
-        something—whether it's electronics, sewing, food science, or one of the projects featured here.
+        something—whether it's a sewing project, food science, or a better way to grow something in my garden.
         I like learning new disciplines, combining ideas from different areas, and most of all, turning
         ideas into things that actually work.`,
     ],
     image: '/images/portrait.jpg',
-    imageAlt: '',
+    imageAlt: 'Scott Nette',
   },
   disciplines: [
     { name: 'Circuit & PCB design', detail: 'Power, mixed-signal circuits, custom boards' },
