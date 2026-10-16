@@ -4,7 +4,7 @@ image: "/images/projects/multicamera/final.jpg"
 imageAlt: "MultiCamera project"
 summary: "A four-input video-switching board for the Tacoma, with camera-selection controls and front/rear override logic."
 category: "Automotive"
-status: "Design documented"
+status: "Design Completed"
 tags: ["Video switching", "Kinetis KL03", "Tacoma"]
 order: 8
 tools: ["KiCad", "C", "NXP SDK"]
@@ -27,14 +27,12 @@ An **AP63203** step-down regulator supplies the 3.3 V logic rail from the 12 V i
 
 A three-way switch is used to select which camera feed is used. A push up shows the front camera, and a push down shows the bottom. And then a quick toggle down cycles through the remaining cameras.
 
-
-<figure class="prototype-photo">
-	<img src="/images/projects/multicamera/prototype.png" alt="MultiCamera prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
-	<figcaption>Prototype / internal PCB</figcaption>
+<figure class="case-video">
+	<iframe src="https://www.youtube-nocookie.com/embed/HGRSuS0s464" title="Plant Mist Sprayer demonstration" width="1600" height="900" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	<figcaption>Plant Mist Sprayer demonstration. <a href="https://www.youtube.com/watch?v=HGRSuS0s464">Watch on YouTube</a>.</figcaption>
 </figure>
-
 ## Engineering challenges
 
 - **Predictable priorities:** reverse activation, manual camera selection, and timeout behavior can conflict unless the state transitions are explicit.
-- **Analog video integrity:** connector termination, routing, and return paths need attention independently of the digital controller.
-- **Vehicle power and wiring:** noisy supply conditions and long harness connections make filtering and reset behavior important. Apparently vehicles can have large voltage spikes on the 12 V rail...
+- **Analog video integrity:** connector termination, routing, and return paths need to be considered to avoid additional noise on the video.
+- **Vehicle power and wiring:** noisy supply conditions and long harness connections make filtering and reset behavior important. Apparently vehicles can have large voltage spikes on the 12 V rail and blow components...

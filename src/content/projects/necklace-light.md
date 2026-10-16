@@ -5,7 +5,7 @@ imageAlt: "Necklace Light project"
 tileImagePosition: "center -100px"
 summary: "A compact wearable-light power board with an adjustable regulator, physical controls, and a custom pendant enclosure."
 category: "Wearables"
-status: "Design documented"
+status: "Design Completed"
 tags: ["Wearable lighting", "Adjustable regulation", "Enclosure"]
 order: 2
 tools: ["KiCad", "3D enclosure models"]

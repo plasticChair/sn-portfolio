@@ -4,7 +4,7 @@ image: "/images/projects/findme-compass/final.jpg"
 imageAlt: "FindMyFriends Compass Project"
 summary: "A compact platform combining GNSS, orientation sensing, and LoRa radio to send your current position to friends with the same device to help navigate to them."
 category: "Wireless"
-status: "Design documented"
+status: "Prototype Only"
 tags: ["GNSS", "BNO086", "ESP32-S3", "VNA", "RF"]
 order: 11
 tools: ["KiCad", "Fusion CAD archive", "PCB assembly files"]
@@ -32,7 +32,6 @@ For LoRa, I used an SX1262 module with a connector for an external antenna. This
 ## Engineering challenges
 
 There were so many unknowns with this design. Normally, I would go out and design and experiment with each unknown. But due to the strict timeline, that wasn't possible. The four devices that were built didn't work 100% as expected, and there were many issues that I anticipated. I think doing one or two more revisions would improve the results by 75% at least.
-
 
 
 - **BNO086 is very heat-sensitive:** The BNO086 is a very tiny SMD package with narrow pin pitch. So soldering it would be hard enough, but this device in particular could not handle heat that well at all. I had to replace two units when reworking boards.

@@ -4,7 +4,7 @@ summary: "A custom PCB business card combining visual identity with an NFC-tag c
 image: "/images/projects/business-cards/final.jpg"
 imageAlt: "Business Cards project"
 category: "Wireless"
-status: "Design documented"
+status: "Completed"
 tags: ["NFC", "PCB design", "NT3H1101"]
 order: 12
 tools: ["KiCad", "PCB fabrication files"]
@@ -12,7 +12,7 @@ tools: ["KiCad", "PCB fabrication files"]
 
 ## The project
 
-A little bit ago I was looking up getting some business cards for when making contacts. But the thought occurred to me that getting regular paper business cards wasn't that impressive if you are trying to make a good impression. What better way to create a business card than with the skills you already have? So I decided to make one from a PCB! In addition to the card, it was possible to add an SMD NFC IC and antenna to easily direct someone to my website or save contact information with a tap and power an LED for added fun.
+A little bit ago I was looking up getting some business cards for when making contacts. But the thought occurred to me that getting regular paper business cards wasn't that impressive if you are trying to make a good impression. What better way to create a business card than with the skills you already have? So I decided to make one from a PCB! In addition to the card, it was possible to add an SMD NFC IC and antenna to easily direct someone to my website or save contact information with a tap and power an LED for added fun.  Let me know if you understand the reference for the company name!
 
 ## Board and circuit
 

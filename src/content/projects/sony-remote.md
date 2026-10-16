@@ -4,7 +4,7 @@ image: "/images/projects/sony-remote/final.jpg"
 imageAlt: "Sony Remote project"
 summary: "A custom volume-control interface using an ATtiny45, stored command patterns, and timer-driven output firmware."
 category: "Interfaces"
-status: "Design documented"
+status: "Design Completed"
 tags: ["ATtiny45", "Remote control", "Timer firmware"]
 order: 13
 tools: ["KiCad", "AVR C", "Atmel Studio", "MPLAB project files"]

@@ -4,7 +4,7 @@ image: "/images/projects/esp-base-station/final.jpg"
 imageAlt: "ESP-NOW Gateway Base Station Project"
 summary: "An ESP32 breakout board that is used to bridge ESP-NOW devices to my home network."
 category: "Wireless"
-status: "Design documented"
+status: "Design Completed"
 tags: ["ESP32", "Base station"]
 order: 10
 tools: ["KiCad", "PCB fabrication configuration"]

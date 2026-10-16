@@ -4,7 +4,7 @@ image: "/images/projects/garage-door-remote/final.jpg"
 imageAlt: "LoRa Garage Door Remote project"
 summary: "A paired LoRa transmitter and receiver with custom boards, packet validation, to eliminate the annoyance of pressing the garage door button more than once."
 category: "Wireless"
-status: "Design documented"
+status: "Design Completed"
 tags: ["LoRa", "SAMD11", "Tx / Rx"]
 order: 12
 tools: ["KiCad", "C", "Atmel START", "AVR firmware archive"]
@@ -17,7 +17,7 @@ For some reason, ever since I moved into my house, my garage door openers just h
 
 ## Designed hardware
 
-This design has two parts: a transmitter and receiver. Both devices will actually transmit and receive in this design, however (see next section). Both contain an **ATSAMD11D14A** and a **LoRa1276** module. The transmitter adds a **BQ21040** charger, an **LM3671** regulator, buttons, and an LED status indicator. The receiver has an **LM3671**, EEPROM, and a **CPC1006NTR** isolated solid-state relay output for signaling to the garage door.
+This design has two parts: a transmitter and receiver. Both devices will actually transmit and receive in this design (see next section). Both contain an **ATSAMD11D14A** and a **LoRa1276** module. The transmitter adds a **BQ21040** charger, an **LM3671** regulator, buttons, and an LED status indicator. The receiver has an **LM3671**, EEPROM, and a **CPC1006NTR** isolated solid-state relay output for signaling to the garage door.
 
 ## Designed behavior
 
@@ -41,4 +41,4 @@ This process uses a bit more power than a typical remote, but this device is USB
 
 ## Final Thoughts
 
-This was one of my most favorite and useful builds this year. No more aggravation when dealing with this opener. The range is up to 1/4 of a mile in my neighborhood. So far it's been working flawlessly!
+This was one of my most favorite and useful builds this year. No more aggravation when dealing with this opener. The range is up to 1/4 of a mile in my neighborhood. So far it's been working flawlessly!  One button press and the door opens, no more aggravation.  

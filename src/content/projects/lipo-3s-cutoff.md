@@ -4,7 +4,7 @@ image: "/images/projects/lipo-3s-cutoff/final.jpg"
 imageAlt: "LiPo 3S Cutoff project"
 summary: "An analog battery-disconnect circuit with voltage and thermal shutdown paths, hysteresis, and a battery-level indicator."
 category: "Power"
-status: "Design documented"
+status: "Design Completed"
 tags: ["LiPo", "Comparators", "Thermal cutoff"]
 order: 4
 tools: ["KiCad", "3D enclosure models"]
@@ -23,8 +23,8 @@ With some added hysteresis and a thermal shutoff circuit as well, we have the fi
 
 
 <figure class="prototype-photo">
-	<img src="/images/projects/lipo-3s-cutoff/prototype.png" alt="LiPo 3S Cutoff prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
-	<figcaption>Prototype / internal PCB</figcaption>
+	<img src="/images/projects/lipo-3s-cutoff/prototype.jpg" alt="LiPo 3S Cutoff prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
+	<figcaption>3D Model</figcaption>
 </figure>
 
 ## Engineering challenges

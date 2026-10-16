@@ -4,7 +4,7 @@ image: "/images/projects/usb-mux/final.jpg"
 imageAlt: "USB Mux project"
 summary: "A two-path USB selector with current sensing and firmware-managed disconnect, switchover, and reconnect sequencing."
 category: "Interfaces"
-status: "Design documented"
+status: "Design Completed"
 tags: ["USB", "SAMD11", "State machine"]
 order: 6
 tools: ["KiCad", "C", "Atmel START"]

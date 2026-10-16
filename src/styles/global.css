@@ -180,6 +180,7 @@ em { font-family: var(--serif); font-weight: 400; }
 .process-gallery figcaption, .case-video figcaption { margin-top: 10px; color: var(--muted); font-size: 12px; }
 .prose .case-video { margin-block: 36px; }
 .prose .case-video video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: var(--surface); margin: 0; }
+.prose .case-video iframe { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0; border-radius: 4px; background: var(--surface); }
 .video-placeholder { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border-radius: 4px; background: var(--surface); }
 .prose .video-placeholder img { width: 100%; height: 100%; object-fit: cover; opacity: .25; margin: 0; }
 .video-placeholder > div { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--ink); font-size: 14px; background: #10121466; }

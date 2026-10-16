@@ -65,6 +65,19 @@ test('every published Markdown project has a card and a generated page; drafts a
   assert.equal(homepage('[data-project]').length, published);
 });
 
+test('Plant Mist Sprayer embeds YouTube in place of the prototype placeholder', async () => {
+  const page = load(await readFile(path.join(dist, 'projects/plant-mister/index.html'), 'utf8'));
+  const video = page('.prose .case-video iframe');
+  assert.equal(video.length, 1);
+  assert.equal(video.attr('src'), 'https://www.youtube-nocookie.com/embed/HGRSuS0s464');
+  assert.equal(video.attr('title'), 'Plant Mist Sprayer demonstration');
+  assert.equal(video.attr('loading'), 'lazy');
+  assert.equal(video.attr('referrerpolicy'), 'strict-origin-when-cross-origin');
+  assert.equal(video.is('[allowfullscreen]'), true);
+  assert.equal(page('.prose img[src="/images/projects/plant-mister/prototype.png"]').length, 0);
+  assert.equal(page('.case-video figcaption a').attr('href'), 'https://www.youtube.com/watch?v=HGRSuS0s464');
+});
+
 test('Auto Relay Driver is removed from the catalog, routes, and sitemap', async () => {
   const homepage = load(await readFile(path.join(dist, 'index.html'), 'utf8'));
   assert.equal(homepage('a[href="/projects/auto-relay-driver/"]').length, 0);

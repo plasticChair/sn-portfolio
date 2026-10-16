@@ -22,14 +22,17 @@ export const portfolio = {
     paragraphs: [
       `I'm a multidisciplinary engineer with a background spanning electrical engineering,
         hardware design, embedded systems, and software, including experience in the aerospace
-        and defense industries. I enjoy tackling open-ended technical problems—taking an idea or
+        and defense industries. I’m comfortable working across disciplines and often serve as a 
+        bridge between teams, helping translate technical needs, constraints, and requirements 
+        so everyone can work toward a common solution.  I enjoy tackling open-ended technical problems, taking an idea or
         difficult requirement, exploring different approaches, and figuring out the best path toward
         a practical solution.  I'm often the person people turn to when a problem needs to be understood
          quickly and a path forward needs to be found.`,
 
-      `Outside of work, I take that same approach to my own projects, designing electronics, building
-        prototypes, and iterating on them until they work the way I envisioned. Check out a sampling of projects 
-        below!  Most of these were done in 2026 (there's way too many to keep updated from previous years).`,
+      `Outside of work, I take that same approach to my own projects. I'm very creative and am always coming up with new ideas
+      or improved methods. I will usually stop and ask myself, "Why is it done like this?" and then try to do it better. I am often
+      designing electronics, building prototypes, and iterating on them until they work the way I envisioned. Check out a sampling of projects
+        below! Most of these were done in 2026 (there are way too many to keep updated from previous years; I should have started a website years ago...).`,
 
       `That curiosity extends well beyond engineering. I'm constantly making or experimenting with
         something—whether it's a sewing project, food science, or a better way to grow something in my garden.

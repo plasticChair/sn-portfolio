@@ -4,7 +4,7 @@ image: "/images/projects/led-strip-protector/final.jpg"
 imageAlt: "LED Strip Protector Project"
 summary: "An inline LED-strip board that combines a protected power switch with a buffered data path to reduce potential damage to the LED strip."
 category: "Power"
-status: "Design documented"
+status: "Design Completed"
 tags: ["LED strips", "Load switching", "Signal buffering"]
 order: 14
 tools: ["KiCad", "PCB fabrication files"]
@@ -19,11 +19,6 @@ I have been designing more wearable projects recently. And most of them involve 
 The board uses an **AP22814BW5-7** power-distribution switch and an **SN74AHCT1G125** tri-state buffer to isolate the driver from the LED strip. With short-circuit protection, power will get cut to the LED strip if the input is shorted. In combination with the signal buffer, this will prevent the strip from being damaged if a wire shorts anything else.
 
 The design was also duplicated for 5 mm and 9.5 mm LED strips as well. The design also includes notches on the PCB to allow for zip ties or other types of strain relief to be used.
-
-<figure class="prototype-photo">
-	<img src="/images/projects/led-strip-protector/prototype.png" alt="LED Strip Protector prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
-	<figcaption>Prototype / internal PCB</figcaption>
-</figure>
 
 ## Engineering challenges
 

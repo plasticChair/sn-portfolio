@@ -4,7 +4,7 @@ image: "/images/projects/heated-gloves/final.jpg"
 imageAlt: "Heated Gloves final-project photo placeholder"
 summary: "A custom glove-heating controller with switched heater outputs, temperature feedback, and battery and current sensing."
 category: "Wearables"
-status: "Design documented"
+status: "Prototype Completed"
 tags: ["ATtiny1627", "Temperature sensing", "MOSFETs"]
 order: 18
 tools: ["KiCad", "AVR C", "Atmel Studio"]
@@ -34,4 +34,4 @@ The design uses an **ATtiny1627** to control the heaters and read the temperatur
 - **Heat versus available power:** heater operation has to fit the battery budget without allowing load changes to undermine voltage and current measurements.
 - **Temperature feedback:** sensor placement, response time, and the relationship between sensed temperature and skin-contact surfaces matter more than the sensor reading alone.
 - **Mixed-signal layout:** high-current heater returns need careful separation from low-level temperature and current-sense signals.
-- **Fault behavior:** sensor disconnection, stalled control logic, and excessive temperature are important cases for validation before wearable use.
+- **Fault behavior:** sensor disconnection, stalled control logic, and excessive temperature are important cases for wearable use.
