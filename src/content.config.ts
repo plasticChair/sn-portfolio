@@ -9,7 +9,7 @@ const projects = defineCollection({
     summary: z.string().min(1),
     category: z.string().min(1),
     year: z.number().int().min(2000).max(2100).optional(),
-    status: z.enum(['Complete', 'In progress', 'Prototype', 'Design documented']).optional(),
+    status: z.enum(['Complete', 'In progress', 'Prototype', 'Design documented', 'Completed', 'Design Completed', 'Prototype Only', 'Prototype Completed']).optional(),
     tags: z.array(z.string()).min(1),
     image: z.string().regex(/^\/images\/.+\.(webp|png|jpe?g|avif|svg)$/i, 'Use a local /images/ asset').optional(),
     imageAlt: z.string().min(1).optional(),

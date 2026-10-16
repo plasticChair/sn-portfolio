@@ -4,7 +4,7 @@ image: "/images/projects/your-project-slug/final.png"
 imageAlt: "Final-project photo placeholder"
 summary: "A short description of what you built and the problem it solves."
 category: "Interfaces"
-status: "Design documented"
+status: "Design Completed"
 tags: ["PCB design", "Embedded systems"]
 featured: false
 order: 20

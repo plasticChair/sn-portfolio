@@ -4,7 +4,7 @@ A modern, static engineering portfolio built with Astro, TypeScript, and Markdow
 
 The portfolio uses a full-width photographic opener, a compact charcoal theme, and a category-filtered catalog with main photos as tile backgrounds. The opener's circuit-board photo is illustrative; project images include supplied JPGs and remaining labeled PNG placeholders. There are 16 entries: 13 design-based case studies from `E:\Designs`, the PCB Business Cards from `E:\Deadbug\BusinessCards\BusinessCards`, a Cyr Wheel build/media draft, and SMS-Questions from `E:\Projects\SMS-Questions` with an owner-confirmed Android/Wi-Fi/Proxmox deployment. SMS-Questions uses an original local architecture illustration rather than a photo of the deployed hardware; its asset source and offline generator are documented in `docs/assets.md`. Source files were inspected read-only; they are not copied into this repository or automatically synchronized.
 
-**The portfolio name is Scott Nette; contact details still need configuring.** Review the case-study drafts against your actual build history before publishing. Unknown dates, completion claims, and measured outcomes are intentionally omitted. `Design documented` means source design files exist, not that hardware passed testing. The source map and open questions are in `docs/project-sources.md`.
+**The portfolio name is Scott Nette; contact details still need configuring.** Review the case-study drafts against your actual build history before publishing. Unknown dates, completion claims, and measured outcomes are intentionally omitted. `Design Completed` means source design files exist, not that hardware passed testing. The source map and open questions are in `docs/project-sources.md`.
 
 ## Run locally
 
@@ -58,7 +58,7 @@ No manual HTML or navigation edits are needed. A new category automatically beco
 | `title`, `summary` | Card, case-study header, search, and page metadata |
 | `category` | Any discipline name; automatically creates its filter |
 | `year` | Optional confirmed year, a number such as `2026`; omit when unknown |
-| `status` | Optional `Complete`, `In progress`, `Prototype`, or `Design documented`; shown on the case study |
+| `status` | Optional `Complete`, `In progress`, `Prototype`, or `Design Completed`; shown on the case study |
 | `tags` | Technologies used in search and shown on the case study, not piled onto catalog cards |
 | `image`, `imageAlt` | Optional local cover photo; alt text is required when an image is supplied |
 | `imagePosition` | Optional image position, e.g. `35% center`; used for covers and tiles without a tile override |
