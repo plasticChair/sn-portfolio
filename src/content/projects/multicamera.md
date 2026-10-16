@@ -31,6 +31,7 @@ A three-way switch is used to select which camera feed is used. A push up shows 
 	<iframe src="https://www.youtube-nocookie.com/embed/HGRSuS0s464" title="Plant Mist Sprayer demonstration" width="1600" height="900" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 	<figcaption>Plant Mist Sprayer demonstration. <a href="https://www.youtube.com/watch?v=HGRSuS0s464">Watch on YouTube</a>.</figcaption>
 </figure>
+
 ## Engineering challenges
 
 - **Predictable priorities:** reverse activation, manual camera selection, and timeout behavior can conflict unless the state transitions are explicit.
