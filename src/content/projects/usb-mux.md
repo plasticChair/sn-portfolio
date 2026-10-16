@@ -1,7 +1,7 @@
 ---
-title: "Automatic USB Detection Mux"
+title: "Automatic USB Detection Switch"
 image: "/images/projects/usb-mux/final.jpg"
-imageAlt: "USB Mux project"
+imageAlt: "USB Switch project"
 summary: "A two-path USB selector with current sensing and firmware-managed disconnect, switchover, and reconnect sequencing."
 category: "Interfaces"
 status: "Design Completed"
@@ -24,7 +24,7 @@ The board uses an **ATSAMD11D14A** controller and a **PI3USB102** USB switch for
 
 
 <figure class="prototype-photo">
-	<img src="/images/projects/usb-mux/prototype.png" alt="USB Mux prototype or internal PCB photo placeholder" width="1600" height="1000" loading="lazy" />
+	<img src="/images/projects/usb-mux/prototype.png" alt="USB Switch prototype" width="1600" height="1000" loading="lazy" />
 	<figcaption>Prototype / internal PCB</figcaption>
 </figure>
 
